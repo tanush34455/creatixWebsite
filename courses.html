@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Courses - Creatix Institute</title>
+    <style>
+        /* Global Styles (Copy of index.html) */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+        :root {
+            --primary-color: #374259;
+            --accent-color: #D74333;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --bg-light: #F8F9FA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background-color: #b93325;
+            transform: translateY(-2px);
+        }
+
+        /* Header */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--primary-color);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        /* Courses Specific Styles */
+        .page-header {
+            margin-top: 80px;
+            padding: 60px 0;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .courses-section {
+            padding: 60px 0;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-img {
+            height: 180px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 40px;
+        }
+
+        /* Random gradient backgrounds for placeholders */
+        .course-card:nth-child(4n+1) .course-img {
+            background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%);
+        }
+
+        .course-card:nth-child(4n+2) .course-img {
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+        }
+
+        .course-card:nth-child(4n+3) .course-img {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        }
+
+        .course-card:nth-child(4n+4) .course-img {
+            background: linear-gradient(135deg, #fccb90 0%, #d57eeb 100%);
+        }
+
+        .course-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-tag {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .course-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .course-desc {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .footer-col p {
+            margin-bottom: 15px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .address-box {
+            margin-bottom: 25px;
+            padding-left: 15px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: 0;
+                top: 80px;
+                background-color: white;
+                flex-direction: column;
+                width: 100%;
+                transform: translateX(100%);
+                transition: transform 0.5s;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container navbar">
+            <div class="logo"><a href="index.html"><img src="logo.png" alt="Creatix Logo"></a></div>
+            <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="contact.html" class="btn">Get Started</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Our Professional Courses</h1>
+            <p>Explore our wide range of industry-standard certification programs.</p>
+        </div>
+    </div>
+
+    <section class="courses-section">
+        <div class="container">
+            <div class="courses-grid">
+                <!-- Course Cards -->
+                <div class="course-card">
+                    <div class="course-img">🎬</div>
+                    <div class="course-content"><span class="course-tag">Design</span>
+                        <h3 class="course-title">2D/3D Animation</h3>
+                        <p>Master the art of storytelling with 2D and 3D animation techniques.</p><a href="contact.html"
+                            class="btn">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">✨</div>
+                    <div class="course-content"><span class="course-tag">VFX</span>
+                        <h3 class="course-title">VFX & Compositing</h3>
+                        <p>Create stunning visual effects for movies and commercials.</p><a href="contact.html"
+                            class="btn">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">🎨</div>
+                    <div class="course-content"><span class="course-tag">Design</span>
+                        <h3 class="course-title">Graphic Design</h3>
+                        <p>Learn Photoshop, Illustrator, and InDesign for professional branding.</p><a
+                            href="contact.html" class="btn">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">💻</div>
+                    <div class="course-content"><span class="course-tag">Development</span>
+                        <h3 class="course-title">Web Development</h3>
+                        <p>Full stack web development using HTML, CSS, JS, and React.</p><a href="contact.html"
+                            class="btn">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">📱</div>
+                    <div class="course-content"><span class="course-tag">Development</span>
+                        <h3 class="course-title">App Development</h3>
+                        <p>Build Android and iOS applications with Flutter and React Native.</p><a href="contact.html"
+                            class="btn">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">🐍</div>
+                    <div class="course-content"><span class="course-tag">Programming</span>
+                        <h3 class="course-title">Python Programming</h3>
+                        <p>Comprehensive Python course from basics to advanced data handling.</p><a href="contact.html"
+                            class="btn">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">☕</div>
+                    <div class="course-content"><span class="course-tag">Programming</span>
+                        <h3 class="course-title">Java Masterclass</h3>
+                        <p>Master Object-Oriented Programming with Java.</p><a href="contact.html" class="btn">Enroll
+                            Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">⌨️</div>
+                    <div class="course-content"><span class="course-tag">Programming</span>
+                        <h3 class="course-title">C Programming</h3>
+                        <p>Build a strong foundation in computer science with C.</p><a href="contact.html"
+                            class="btn">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">🚀</div>
+                    <div class="course-content"><span class="course-tag">Programming</span>
+                        <h3 class="course-title">C++ Programming</h3>
+                        <p>Advanced C++ for system programming and game development.</p><a href="contact.html"
+                            class="btn">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">🤖</div>
+                    <div class="course-content"><span class="course-tag">Future Tech</span>
+                        <h3 class="course-title">Artificial Intelligence</h3>
+                        <p>Learn AI concepts, Neural Networks, and Deep Learning.</p><a href="contact.html"
+                            class="btn">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">🧠</div>
+                    <div class="course-content"><span class="course-tag">Future Tech</span>
+                        <h3 class="course-title">Machine Learning</h3>
+                        <p>Build predictive models and algorithms with Python.</p><a href="contact.html"
+                            class="btn">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">📊</div>
+                    <div class="course-content"><span class="course-tag">Data</span>
+                        <h3 class="course-title">Data Science</h3>
+                        <p>Data analysis, visualization, and big data technologies.</p><a href="contact.html"
+                            class="btn">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">📢</div>
+                    <div class="course-content"><span class="course-tag">Marketing</span>
+                        <h3 class="course-title">Digital Marketing</h3>
+                        <p>SEO, SEM, Social Media Marketing, and Content Strategy.</p><a href="contact.html"
+                            class="btn">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">🖌️</div>
+                    <div class="course-content"><span class="course-tag">Design</span>
+                        <h3 class="course-title">UI/UX Design</h3>
+                        <p>User Interface and User Experience design using Figma.</p><a href="contact.html"
+                            class="btn">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">🔒</div>
+                    <div class="course-content"><span class="course-tag">Tech</span>
+                        <h3 class="course-title">Cyber Security</h3>
+                        <p>Ethical Hacking, Network Security, and Information Assurance.</p><a href="contact.html"
+                            class="btn">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">☁️</div>
+                    <div class="course-content"><span class="course-tag">Tech</span>
+                        <h3 class="course-title">Cloud Computing</h3>
+                        <p>AWS, Azure, and Google Cloud Platform fundamentals.</p><a href="contact.html"
+                            class="btn">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">🎮</div>
+                    <div class="course-content"><span class="course-tag">Dev</span>
+                        <h3 class="course-title">Game Development</h3>
+                        <p>Create games with Unity and Unreal Engine.</p><a href="contact.html" class="btn">Enroll
+                            Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">🎥</div>
+                    <div class="course-content"><span class="course-tag">Media</span>
+                        <h3 class="course-title">Video Editing</h3>
+                        <p>Professional video editing with Premiere Pro and DaVinci.</p><a href="contact.html"
+                            class="btn">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">🎞️</div>
+                    <div class="course-content"><span class="course-tag">Media</span>
+                        <h3 class="course-title">Motion Graphics</h3>
+                        <p>Create animated graphics using After Effects.</p><a href="contact.html" class="btn">Enroll
+                            Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">🧊</div>
+                    <div class="course-content"><span class="course-tag">Design</span>
+                        <h3 class="course-title">3D Modeling</h3>
+                        <p>3D modeling and texturing with Blender and Maya.</p><a href="contact.html" class="btn">Enroll
+                            Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">🌐</div>
+                    <div class="course-content"><span class="course-tag">Development</span>
+                        <h3 class="course-title">Full Stack Dev</h3>
+                        <p>MERN Stack mastery: MongoDB, Express, React, Node.</p><a href="contact.html"
+                            class="btn">Enroll Now</a>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-img">🔗</div>
+                    <div class="course-content"><span class="course-tag">Tech</span>
+                        <h3 class="course-title">Blockchain</h3>
+                        <p>Cryptocurrency, Smart Contracts, and DApp development.</p><a href="contact.html"
+                            class="btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>About Us</h3>
+                <p>Creatix Institute is Rajasthan's fastest-growing creative institute, leading the way in digital
+                    education and innovation.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <div class="address-box">
+                    <strong>Address 1:</strong><br>
+                    Near St. Wilfred's college, 120/27 1, Sector 12, Mansarovar, Jaipur, Rajasthan 302020
+                </div>
+                <div class="address-box">
+                    <strong>Address 2:</strong><br>
+                    3rd Floor, Plot No. 100/SP/04, Sector-10, Tonk Rd, Pratap Nagar, Sanganer, Jaipur, Rajasthan 302033
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul style="list-style: none;">
+                    <li><a href="courses.html">All Courses</a></li>
+                    <li><a href="contact.html">Book Demo</a></li>
+                    <li><a href="about.html">Our Story</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Creatix Institute. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>
